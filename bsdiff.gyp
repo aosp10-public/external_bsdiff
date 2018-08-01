@@ -151,10 +151,12 @@
           'includes': ['../common-mk/common_test.gypi'],
           'sources': [
             'brotli_compressor_unittest.cc',
+            'brotli_decompressor_unittest.cc',
             'bsdiff_arguments.cc',
             'bsdiff_arguments_unittest.cc',
             'bsdiff_unittest.cc',
             'bspatch_unittest.cc',
+            'bz2_decompressor_unittest.cc',
             'diff_encoder_unittest.cc',
             'endsley_patch_writer_unittest.cc',
             'extents_file_unittest.cc',
@@ -164,6 +166,22 @@
             'split_patch_writer_unittest.cc',
             'suffix_array_index_unittest.cc',
             'test_utils.cc',
+          ],
+        },
+      ],
+    }],
+    # fuzzer target
+    ['USE_fuzzer == 1', {
+      'targets': [
+        {
+          'target_name': 'bspatch_fuzzer',
+          'type': 'executable',
+          'dependencies': [
+            'libbspatch-static',
+          ],
+          'includes': ['../../platform2/common-mk/common_fuzzer.gypi'],
+          'sources': [
+            'bspatch_fuzzer.cc',
           ],
         },
       ],
